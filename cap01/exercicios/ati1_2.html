@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // Programa que leia o valor total de uma conta e quantos cliente vão paga-lá, após isso informe quanto cada um deve pagar
+        let valorTotal = Number(prompt("Valor total da conta: "))
+        let pagantes = Number(prompt("Em quantas pessoas será dividido? "))
+        let pagamentoPessoa = valorTotal / pagantes
+        alert(`O valor por pessoa é de ${pagamentoPessoa.toFixed(2)}`)
+    </script>
+</body>
+</html>

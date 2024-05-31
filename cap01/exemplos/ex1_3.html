@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operações envolvendo strings e números</title>
+</head>
+<body>
+    
+    <script>
+        const a = "20";
+        const b = a * 2;  // b = 40  (Houve a conversão implicita da string "20" para o valor 20)
+        const c = a / 2;  // c = 10  (conversão implicita novamente)
+        const d = a - 2;  // d = 18  (conversão implicita novamente)
+        const e = a + 2;  // e = 202 (houve a concatenação dos valores)
+        alert("e: " +  e) // exibe o valor de uma variável
+        const f = Number(a) + 2; // f = 22 (Realizado a conversão explicita para número)
+        // É possivel relizar a conversão usando os métodos parseInt(), Number(), parseFloat()
+        </script>
+</body>
+</html>

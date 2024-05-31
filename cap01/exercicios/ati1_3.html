@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // ler o preço de um produto e informar o valor a vista com 10% de desconto e parcelado em três vezes
+
+        let produto = Number(prompt('Qual o valor do produto? '))
+        const pagamento1x = produto - produto * 0.10
+        const pagamento3x = produto / 3
+        alert(`Para pagamento a vista o valor com desconto é de: ${pagamento1x}\n Também é possivel parcelar em 3x de ${pagamento3x.toFixed(2)}`)
+    </script>
+</body>
+</html>
