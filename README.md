@@ -1,2 +1,2 @@
 # ExerciciosLivroJs
-Este repositório tem como base todos os exemplos e exercicios que realizei utilizando o livro "Lógica de programação e algoritimos" do autor Edécio Fernando Lepsen, com o qual busquei consolidar os conhecimentos de lógica de programação usando a linguagem de JavaScript como meio
+Este repositório contém todos os exemplos e exercícios que realizei utilizando o livro "Lógica de Programação e Algoritmos", do autor Edécio Fernando Lepsen. Nele, busquei consolidar meus conhecimentos de lógica de programação usando a linguagem JavaScript.
