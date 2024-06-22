@@ -1,13 +1,51 @@
-img {
-    float: left; 
-    height: 300px; 
-    width: 300px;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1{
-    border-bottom-style: inset;
-}
 
 body {
-    background-color: rgb(247, 247, 247);
+    background-image: url(../img/wallpaper-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "MontSerrat", sans-serif;
+    font-size: 16px;
+}
+/* .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.child {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: white;
+    width: 450px;
+    height: 450px;
+    padding: 1rem;
+    border: 2px solid #ffffff30;
+    border-radius: 8px;
+    background: #ffffff10;
+    backdrop-filter: blur(4px);
+    text-align: center;
+
+}
+form{
+    margin: auto;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+input {
+    font-family: "MontSerrat", sans-serif;
+    font-size: 1em;
+    margin: 1rem;
 }
