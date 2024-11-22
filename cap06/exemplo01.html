@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form>
+        <p>Paciente
+            <input type="text" id="inPaciente" required autofocus>
+            <input type="submit" value="adicionar">
+            <input type="button" value="urgencia" id="btnUrgencia">
+            <input type="button" value="atender" id="btnAtender">
+        </p>
+    </form>
+    <h3>em atendimento:
+        <span class="fonte-azul"></span>
+    </h3>
+    <pre></pre>
+
+    <script>
+
+        const frm = document.querySelector("form");
+        const respNome = document.querySelector("span");
+        const respLista = document.querySelector("pre");
+
+        const pacientes = [];
+
+        // adiciona o paciente a lista
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nome = frm.inPaciente.value;
+            pacientes.push(nome);
+            addList();
+            frm.inPaciente.value = "";
+            frm.inPaciente.focus();
+        })
+
+        // define o paciente como urgente
+        frm.btnUrgencia.addEventListener('click', (e) => {
+            if (!frm.checkValidity()) {
+                alert("Informe o nome do paciente que precisa de atendimento urgente!");
+                frm.inPaciente.focus();
+                return
+            }
+
+            const nome = frm.inPaciente.value // obtém o nome do paciente
+            pacientes.unshift(nome);
+            addList();
+            frm.inPaciente.value = "";
+
+        })
+
+        frm.btnAtender.addEventListener('click', (e) => {
+            if(pacientes.length== 0) {
+                alert("Não há pacientes na lista de espera.")
+            } else {
+                let emAtendimento = pacientes.shift();
+                addList();
+                respNome.innerText = emAtendimento;
+            }
+        })
+
+        function addList() {
+            let lista = "";
+            pacientes.forEach((paciente, index) => {
+                lista += `${index + 1}. ${paciente}\n`
+            });
+            respLista.innerText = lista;
+        };
+        // Mostra o paciente que está sendo atendido
+
+
+
+        // precisa consulta o primeiro paciente da lista
+        // remover o primeiro paciente da lista
+        // inserir o paciente no campo destinado
+
+
+    </script>
+
+</body>
+
+</html>
