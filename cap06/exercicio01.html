@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Jogos Eliminatórios</h1>
+    <form>
+        <p>Clube:
+            <input type="text" id="inClube" required autofocus>
+            <input type="submit" value="adicionar">
+        </p>
+        <button id="btnListar">Listar Clubes</button>
+        <button id="btnCriarTabela">Montar Tabela de Jogos</button>
+    </form>
+    <pre></pre>
+
+    <script>
+
+        let frm = document.querySelector('form');
+        let resp = document.querySelector('pre');
+
+        let clubes = [];
+
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let clube = frm.inClube.value;
+            clubes.push(clube);
+            console.log(clubes);
+            frm.reset();
+
+            let lista = '';
+            for (let i = 0; i < clubes.length; i++) {
+                lista += `${clubes[i]}\n`;
+
+            }
+            console.log(lista)
+            resp.innerText = lista;
+        });
+
+        frm.btnCriarTabela.addEventListener('click', (e) => {
+            if (clubes.length == 0) {
+                resp.innerText = 'A lista de clubes está vázia';
+            } else if (clubes.length % 2 != 0) {
+                resp.innerText = 'Não é possivel montar uma tabela com um número impar de times'
+            } else {
+                let sorteio = '';
+                for (let i = 0; i < clubes.length / 2; i++) {
+                    sorteio += `${clubes[i]} X ${clubes[clubes.length - 1 - i]}\n`
+                }
+                resp.innerText = sorteio;
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
