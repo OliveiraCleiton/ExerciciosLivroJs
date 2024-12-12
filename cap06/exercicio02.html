@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 02 cap06</title>
+</head>
+
+<body>
+    <h1>Programa Números em Ordem</h1>
+    <hr>
+    <form>
+        <p>
+            <input type="number" id="inNumber" required autofocus>
+            <input type="submit" value="adicionar">
+        </p>
+        <button id="btnVerificar">Verificar Ordem</button>
+    </form>
+    <pre></pre>
+    <h2></h2>
+
+    <script>
+
+        let frm = document.querySelector('form');
+        let list = document.querySelector('pre');
+        let result = document.querySelector('h2');
+
+        let listOfNumbers = [];
+
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let number = Number(frm.inNumber.value);
+            frm.reset();
+            frm.inNumber.focus();
+            if (listOfNumbers.includes(number)) {
+                result.innerText = `O número ${number} já está na lista, escolha outro número`
+                return
+            } else {
+                listOfNumbers.push(number);
+            }
+            list.innerText = listOfNumbers
+        })
+
+        frm.btnVerificar.addEventListener('click', (e) => {
+            e.preventDefault();
+            let order = true;
+            for (let i = 0; i < listOfNumbers.length / 2; i++) {
+                if ( listOfNumbers[i] > listOfNumbers[i+1]){
+                    order = false;
+                }
+            }
+            result.innerText = order ? "Ok! Números estão na ordem crescente": "Atenção números não estão em ordem crescente"
+        })
+    </script>
+</body>
+
+</html>
