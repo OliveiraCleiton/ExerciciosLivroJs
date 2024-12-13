@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 02</title>
+</head>
+
+<body>
+
+    <h1>Programa qual é a fruta?</h1>
+    <form>
+        <p>Fruta:
+            <input type="text" id="inFruta" autofocus required>
+            <input type="submit" value="Jogar">
+        </p>
+        <h3>Descubra:
+            <span class="entre-letras"></span>
+        </h3>
+    </form>
+
+    <script>
+        const frm = document.querySelector('form');
+        const resp = document.querySelector('span');
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let fruta = frm.inFruta.value.toUpperCase();
+            let resposta = '';
+
+            for (const letra of fruta){
+                if (letra == fruta.charAt(0)){
+                    resposta += ` ${fruta.charAt(letra)} - `;
+                } else {
+                    resposta += ' _- ';
+                }
+            }
+            resp.innerText = resposta;
+            frm.inFruta.value = "*".repeat(fruta.length);
+        })
+    </script>
+</body>
+
+</html>
