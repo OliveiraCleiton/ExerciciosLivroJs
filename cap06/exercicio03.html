@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 03</title>
+</head>
+
+<body>
+    <h1>Programa Concurso</h1>
+    <form>
+        <p>Candidato:
+            <input type="text" id="inName" required autofocus>
+        </p>
+        <p>Nº de acertos:
+            <input type="number" id="inScore" required min="0">
+        </p>
+        <input type="submit" value="adicionar">
+        <button id="listAll">Listar todos</button>
+        <button id="inAproved">Aprovados 2º Etapa</button>
+    </form>
+    <pre></pre>
+    <h2></h2>
+
+
+    <script>
+        const frm = document.querySelector('form');
+        const list = document.querySelector('pre');
+        const message = document.querySelector('h2');
+
+        const alunos = [];
+
+        frm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            let aluno = frm.inName.value;
+            let nota = Number(frm.inScore.value);
+            alunos.push({ aluno, nota })
+            frm.reset();
+            frm.inName.focus();
+            frm.listAll.dispatchEvent(new Event('click'));
+        })
+
+        frm.listAll.addEventListener('click', (e) => {
+            let view = '';
+            for (let i = 0; i < alunos.length; i++) {
+                view += `${alunos[i].aluno} - ${alunos[i].nota}\n`
+            }
+            list.innerText = view;
+        })
+
+        frm.inAproved.addEventListener('click', (e) => {
+            let notaCorte = prompt('Qual a nota para aprovação: ');
+            let view = '';
+            alunos.filter((pessoa, index) => {
+                if (alunos[index].nota >= notaCorte) {
+                   return view += `${alunos[index].aluno} - ${alunos[index].nota}\n`
+                }
+            })
+            list.innerText = view;
+        })
+    </script>
+
+</body>
+
+</html>
