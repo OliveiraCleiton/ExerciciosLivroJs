@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 06</title>
+</head>
+
+<body>
+    <h1>Programa valida Senha</h1>
+    <hr>
+    <form>
+        <p>senha:
+            <input type="password" name="" id="inSenha" autofocus required>
+        </p>
+        <input type="submit" value="Verificar Senha">
+    </form>
+    <h3></h3>
+
+    <script>
+
+        const frm = document.querySelector('form');
+        const resp = document.querySelector('h3');
+
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const senha = frm.inSenha.value;
+            const erros = [];
+
+            if (senha.length < 8 || senha.length > 15) {
+                erros.push('Possuir entre 8 e 15 caracteres.');
+            }
+            if (senha.match(/[0-9]/g) == null) {
+                erros.push('Deve possuir pelo menos um número.')
+            }
+            if (!senha.match(/[a-z]/g)) {
+                erros.push('Deve possuir pelo menos uma letra minúscula.')
+            }
+            if (!senha.match(/[A-Z]/g)) {
+                erros.push('Deve possuir pelo menos duas letras maiúsculas.')
+            }
+            if (!senha.match(/[\W|_]/g)) {
+                erros.push('Deve possuir pelo menos um simbolo.')
+            }
+            if (erros.length == 0) {
+                resp.innerText = "Ok! Senha Válida."
+            } else {
+                resp.innerText = `Erro... A senha deve: ${erros.join(', ')}`
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>
