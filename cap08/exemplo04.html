@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 04</title>
+    <style>
+        .oculta {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pizzaria Avenina - Controle de Pedidos</h1>
+    <form>
+        <p>Item do Pedido:
+            <input type="radio" name="produto" id="rbPizza" checked autofocus>Pizza
+            <input type="radio" name="produto" id="rbBebida">Bebida
+            <span>Item</span>
+            <select id="inPizza">
+                <option value="media">Pizza Média</option>
+                <option value="grande">Pizza Grande</option>
+                <option value="familia">Pizza Família</option>
+            </select>
+            <select id="inBebida" class="oculta">
+                <option value="refri">Refrigerante</option>
+                <option value="suco">Jarra de suco</option>
+                <option value="agua">Água Mineral</option>
+            </select>
+        </p>
+        <p>Detalhes do item:
+            <input type="text" id="inDetalhes" class="detalhes">
+            <input type="submit" value="Adicionar">
+        </p>
+    </form>
+    <pre></pre>
+
+    <script>
+        const frm = document.querySelector("form");
+        const resp = document.querySelector("pre");
+
+        const itens = [];
+
+        frm.rbPizza.addEventListener("click", () => {
+            frm.inBebida.className = "oculta";
+            frm.inPizza.className = "exibe";
+        })
+
+        frm.rbBebida.addEventListener("click", () => {
+            frm.inPizza.className = "oculta";
+            frm.inBebida.className = "exibe";
+        })
+
+        frm.inDetalhes.addEventListener('focus', () => {
+            if (frm.rbPizza.checked) {
+                const pizza = frm.inPizza.value;
+                const num = pizza == "media" ? 2 : pizza == "grande" ? 3 : 4;
+                frm.inDetalhes.placeholder = `Até ${num} sabores`
+            }
+        })
+
+        frm.inDetalhes.addEventListener("blur", () => {
+            frm.inDetalhes.placeholder = "";
+        })
+
+        frm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let produto
+            if (frm.rbPizza.checked) {
+                const num = frm.inPizza.selectedIndex
+                produto = frm.inPizza.options[num].text
+            } else {
+                const num = frm.inBebida.selectedIndex;
+                produto = frm.inBebida.options[num].text
+            }
+
+            const detalhes = frm.inDetalhes.value
+            if (detalhes == "") {
+                itens.push(produto);
+                resp.innerText = itens.join("\n")
+            } else {
+                itens.push(produto + "(" + detalhes + ")");
+                resp.innerText = itens.join("\n")
+            }
+
+            frm.reset();
+            frm.rbPizza.dispatchEvent(new Event("click"));
+        })
+    </script>
+
+</body>
+
+</html>
