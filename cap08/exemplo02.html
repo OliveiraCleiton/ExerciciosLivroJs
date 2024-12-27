@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 02</title>
+</head>
+
+<body>
+    <h1>Revenda Avenida - Promoção</h1>
+    <form>
+        <p>Modelo do veiculo:
+            <input type="text" name="" id="inModelo" required autofocus>
+        </p>
+        <p>Ano de fabricacao:
+            <input type="number" name="" id="inAno" required min="0" max="2024">
+        </p>
+        <p>Preço:
+            <input type="number" name="" id="inValor" required min="1">
+        </p>
+        <input type="submit" value="Classificar">
+    </form>
+    <pre></pre>
+
+    <script>
+        const frm = document.querySelector('form');
+        const resp = document.querySelector('pre');
+        
+        let anoAtual = new Date().getFullYear();
+        
+        function calcClassificacao(ano) {
+            const classModelo = ano == anoAtual ? 'Novo' : (anoAtual - ano) > 2 ? 'Usado' : 'Semi Novo';
+            return classModelo;
+        }
+        
+        function calcEntrada(ano, valor) {
+            let valorEntrada = 0;
+            if (ano == anoAtual) {
+                valorEntrada += valor * 0.5;
+            } else {
+                valorEntrada += valor * 0.3;
+            }
+            return valorEntrada;
+        }
+
+        frm.addEventListener('submit', (e) => {
+            
+            e.preventDefault();
+            const modelo = frm.inModelo.value;
+            const fabricado = Number(frm.inAno.value);
+            const preco = Number(frm.inValor.value);
+            
+            const classificacao = calcClassificacao(fabricado);
+            const valorEntrada = calcEntrada(fabricado, preco);
+            const parcelas = (preco - valorEntrada) / 10;
+
+            resp.innerText = `
+                ${modelo} - ${classificacao}
+                Entrada: R$: ${valorEntrada}
+                Parcelas: 10X de ${parcelas}
+            `
+
+        })
+
+    </script>
+</body>
+
+</html>
