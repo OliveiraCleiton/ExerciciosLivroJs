@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')();
 
-const situacao = (nota, media) => {
+const situacao = (nota, media = 7) => {
     if (nota >= media) {
         console.log('Aprovado');
     } else {
@@ -10,4 +10,4 @@ const situacao = (nota, media) => {
 
 const prova1 = Number(prompt('Qual Nota: '));
 
-situacao(prova1, 7)
+situacao(prova1, 5)
