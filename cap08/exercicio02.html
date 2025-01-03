@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 02</title>
+</head>
+
+<body>
+    <h1>Programa senha inicial</h1>
+
+    <form>
+        <p>Nome do Aluno:
+            <input type="text" name="" id="inName">
+        </p>
+        <input type="submit" value="Gerar Senha">
+    </form>
+    <h2></h2>
+
+    <script>
+        const frm = document.querySelector('form')
+        const resp = document.querySelector('h2')
+
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const nome = frm.inName.value
+            if (!validarNome(nome)) {
+                resp.innerText = 'É necessário informar nome completo!'
+            } else {
+                let senha = `Senha inicial: ${obterSobrenome(nome)}${contarVogais(nome)}`
+                resp.innerText = senha
+            }
+            frm.reset();
+            frm.inName.focus()
+        })
+
+        function validarNome(nome) {
+            if (nome.includes(' ')) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        function obterSobrenome(nome) {
+            let ultNome = nome.split(' ')
+            return ultNome[ultNome.length - 1].toLowerCase()
+        }
+
+        function contarVogais(nome) {
+            let vogais = nome.match(/(a|e|i|o|u)/gi)
+            return vogais.length
+        }
+
+    </script>
+
+</body>
+
+</html>
