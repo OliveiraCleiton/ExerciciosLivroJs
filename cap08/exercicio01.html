@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <h1>Clube de Natação</h1>
+
+    <form action="">
+        <p>Nome do Atleta:
+            <input type="text" id="inName">
+        </p>
+        <p>Idade:
+            <input type="number" name="" id="inAge">
+        </p>
+        <input type="submit" value="Categorizar Atleta">
+    </form>
+    <pre></pre>
+
+
+    <script>
+        const frm = document.querySelector('form')
+        const resp = document.querySelector('pre')
+
+
+        const atletas = []
+
+        frm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            let nome = frm.inName.value
+            let idade = Number(frm.inAge.value)
+            atletas.push({ name, idade })
+            nome = retornarTracos(nome)
+            idade = categorizarAluno(idade)
+            resp.innerText = `${nome}\n${idade}`
+        })
+
+        function retornarTracos(nome) {
+            let caracteres = ''
+            for (const letra of nome) {
+
+                if (letra == ' ') {
+
+                    caracteres += ' '
+                } else {
+                    caracteres += '-'
+                }
+            }
+            return `${nome}\n${caracteres}`
+        }
+
+        function categorizarAluno(idade){
+            if( idade <= 12){
+                return 'Categoria: Infantil'
+            } else if (idade > 18){
+                return 'Categoria: Adulto'
+            } else {
+                return 'Categoria: Juvenil'
+            }
+        }
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
